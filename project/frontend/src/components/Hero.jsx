@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Download } from 'lucide-react';
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -33,6 +33,18 @@ const Hero = () => {
             Sumanth Banisetti
           </span>
         </h1>
+
+        {/* Resume Download Button */}
+        <div className="mt-10">
+          <a
+            href="/sumanth-banisetti-resume.pdf"
+            download="Sumanth_Banisetti_Resume.pdf"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-base hover:bg-white/90 active:scale-95 transition-all duration-200 shadow-lg shadow-white/10"
+          >
+            <Download className="w-5 h-5" />
+            Download Resume
+          </a>
+        </div>
       </div>
 
       {/* Scroll indicator */}

@@ -81,7 +81,7 @@ const Contact = () => {
               <h4 className="text-lg font-semibold text-white mb-4">Useful links:</h4>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://linkedin.com/in/sumanth-banisetti"
+                  href="https://www.linkedin.com/in/sumanth-banisetti-19912a286/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-200"
@@ -89,7 +89,7 @@ const Contact = () => {
                   LinkedIn
                 </a>
                 <a
-                  href="https://github.com/sumanthbanisetti"
+                  href="https://github.com/sumanth2354"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-colors duration-200"
@@ -98,10 +98,10 @@ const Contact = () => {
                 </a>
               </div>
               <a
-                href="mailto:sumanth@example.com"
+                href="mailto:sumanthbanisetti2354@gmail.com"
                 className="inline-block mt-4 text-white/70 hover:text-white transition-colors duration-200"
               >
-                sumanth@example.com
+                sumanthbanisetti2354@gmail.com
               </a>
             </div>
           </div>

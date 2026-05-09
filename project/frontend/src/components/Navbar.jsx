@@ -68,6 +68,13 @@ const Navbar = () => {
             Contact
           </button>
         </div>
+        <a
+          href="/sumanth-banisetti-resume.pdf"
+          download="Sumanth_Banisetti_Resume.pdf"
+          className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-200"
+        >
+          Resume
+        </a>
         <button
           onClick={() => setIsDark(!isDark)}
           className="p-2 rounded-full hover:bg-white/10 transition-colors duration-200"

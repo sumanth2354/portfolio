@@ -70,15 +70,15 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Contact & Networks</h4>
             <div className="space-y-3">
               <a
-                href="mailto:sumanth@example.com"
+                href="mailto:sumanthbanisetti2354@gmail.com"
                 className="block text-white/60 hover:text-white transition-colors duration-200"
               >
-                sumanth@example.com
+                sumanthbanisetti2354@gmail.com
               </a>
               <p className="text-white/60">Hyderabad, India</p>
               <div className="flex gap-3 mt-4">
                 <a
-                  href="https://linkedin.com/in/sumanth-banisetti"
+                  href="https://www.linkedin.com/in/sumanth-banisetti-19912a286/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-200"
@@ -86,7 +86,7 @@ const Footer = () => {
                   <Linkedin className="w-5 h-5 text-white" />
                 </a>
                 <a
-                  href="https://github.com/sumanthbanisetti"
+                  href="https://github.com/sumanth2354"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-200"
