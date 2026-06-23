@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Send, CheckCircle, Mail, Linkedin, Github } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import mine from '../assets/mine.jpg';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -13,104 +15,134 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Store in localStorage
     const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-    submissions.push({
-      ...formData,
-      timestamp: new Date().toISOString(),
-    });
+    submissions.push({ ...formData, timestamp: new Date().toISOString() });
     localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
-
-    // Show success message
     toast({
       title: 'Message Sent!',
-      description: 'Thank you for reaching out. I\'ll get back to you soon.',
+      description: "Thank you for reaching out. I'll get back to you soon.",
     });
-
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
-
-    // Reset form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      message: '',
-    });
+    setFormData({ firstName: '', lastName: '', email: '', message: '' });
   };
 
   return (
-    <section id="contact" className="min-h-screen py-24 px-8 md:px-16 lg:px-32">
+    <section id="contact" className="py-24 px-6 md:px-16 lg:px-32">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
-        <div className="mb-16">
-          <h2 className="text-6xl md:text-7xl font-bold text-white mb-4">Contact</h2>
-          <div className="h-1 w-full bg-gradient-to-r from-white/20 to-transparent"></div>
-        </div>
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <p className="text-white/35 text-xs tracking-[0.25em] uppercase mb-3">Get in touch</p>
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Contact</h2>
+          <div className="h-px w-full bg-gradient-to-r from-white/18 to-transparent" />
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side - Profile Info */}
-          <div className="space-y-8">
-            <div className="flex items-start gap-6">
-              <div className="w-24 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-700/30 to-gray-800/30 border border-white/10">
-                <img
-                  src="https://via.placeholder.com/100x100/1a1a1a/666666?text=SB"
-                  alt="Sumanth Banisetti"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Sumanth Banisetti</h3>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-sm">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+          {/* Left: info */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            {/* Profile card */}
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl overflow-hidden border border-white/10 shrink-0">
+                  <img
+                    src={mine}
+                    alt="Sumanth Banisetti"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-white">Sumanth Banisetti</h3>
+                  <p className="text-white/40 text-xs mt-0.5">Full-Stack Developer</p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/12 border border-green-500/22 text-green-400 text-[11px] font-medium shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   Available
                 </span>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Useful links:</h4>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://www.linkedin.com/in/sumanth-banisetti-19912a286/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-200"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/sumanth2354"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium transition-colors duration-200"
-                >
-                  GitHub
-                </a>
+            {/* Email link */}
+            <a
+              href="mailto:sumanthbanisetti2354@gmail.com"
+              className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/8 hover:border-white/15 transition-all duration-200 group"
+            >
+              <div className="p-2.5 rounded-xl bg-white/5 shrink-0">
+                <Mail className="w-4 h-4 text-white/45 group-hover:text-white/70 transition-colors duration-200" />
               </div>
+              <div>
+                <p className="text-xs text-white/35 mb-0.5">Email</p>
+                <p className="text-sm text-white/70 group-hover:text-white transition-colors duration-200">
+                  sumanthbanisetti2354@gmail.com
+                </p>
+              </div>
+            </a>
+
+            {/* Social links */}
+            <div className="space-y-2.5">
+              <p className="text-xs text-white/35 font-medium tracking-[0.15em] uppercase px-1">
+                Find me on
+              </p>
               <a
-                href="mailto:sumanthbanisetti2354@gmail.com"
-                className="inline-block mt-4 text-white/70 hover:text-white transition-colors duration-200"
+                href="https://www.linkedin.com/in/sumanth-banisetti-19912a286/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-2xl bg-blue-600/8 border border-blue-500/18 hover:bg-blue-600/15 hover:border-blue-500/28 transition-all duration-200 group"
               >
-                sumanthbanisetti2354@gmail.com
+                <div className="p-2.5 rounded-xl bg-blue-500/15 shrink-0">
+                  <Linkedin className="w-4 h-4 text-blue-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white font-medium">LinkedIn</p>
+                  <p className="text-xs text-white/35 truncate">sumanth-banisetti-19912a286</p>
+                </div>
+                <Send className="w-3.5 h-3.5 text-white/20 group-hover:text-blue-400 transition-colors duration-200 shrink-0" />
+              </a>
+
+              <a
+                href="https://github.com/sumanth2354"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/18 transition-all duration-200 group"
+              >
+                <div className="p-2.5 rounded-xl bg-white/8 shrink-0">
+                  <Github className="w-4 h-4 text-white/60" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white font-medium">GitHub</p>
+                  <p className="text-xs text-white/35">sumanth2354</p>
+                </div>
+                <Send className="w-3.5 h-3.5 text-white/20 group-hover:text-white/55 transition-colors duration-200 shrink-0" />
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Side - Contact Form */}
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Send me a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+          {/* Right: form */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h3 className="text-lg font-semibold text-white mb-6">Send me a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="grid grid-cols-2 gap-3.5">
                 <input
                   type="text"
                   name="firstName"
@@ -118,7 +150,7 @@ const Contact = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-white/30 text-white placeholder-white/40 outline-none transition-colors duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/28 focus:outline-none text-white text-sm placeholder-white/25 transition-colors duration-200"
                 />
                 <input
                   type="text"
@@ -127,46 +159,46 @@ const Contact = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-white/30 text-white placeholder-white/40 outline-none transition-colors duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/28 focus:outline-none text-white text-sm placeholder-white/25 transition-colors duration-200"
                 />
               </div>
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-white/30 text-white placeholder-white/40 outline-none transition-colors duration-200"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/28 focus:outline-none text-white text-sm placeholder-white/25 transition-colors duration-200"
               />
               <textarea
                 name="message"
-                placeholder="Message"
+                placeholder="Your message..."
                 value={formData.message}
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-white/30 text-white placeholder-white/40 outline-none transition-colors duration-200 resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/28 focus:outline-none text-white text-sm placeholder-white/25 transition-colors duration-200 resize-none"
               />
               <button
                 type="submit"
                 disabled={submitted}
-                className="flex items-center gap-2 px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black font-semibold text-sm rounded-xl hover:bg-white/90 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {submitted ? (
                   <>
-                    <CheckCircle className="w-5 h-5" />
-                    Sent!
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    Message Sent!
                   </>
                 ) : (
                   <>
-                    Send
-                    <Send className="w-5 h-5" />
+                    Send Message
+                    <Send className="w-4 h-4" />
                   </>
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
